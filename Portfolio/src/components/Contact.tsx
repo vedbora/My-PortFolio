@@ -38,7 +38,7 @@ const Contact: React.FC = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:8080/api/contact", {
+      const res = await fetch("http://https://my-portfolio-d2vc.onrender.com/api/contact", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
