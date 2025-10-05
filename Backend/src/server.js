@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import rateLimit from "express-rate-limit";
 import { z } from "zod";
+import path from "path";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:5173";
 
+// Middlewares
 app.use(helmet());
 app.use(cors({ origin: CORS_ORIGIN, credentials: false }));
 app.use(express.json({ limit: "1mb" }));
@@ -34,7 +36,7 @@ const contactSchema = z.object({
   email: z.string().email(),
   message: z.string().min(1).max(5000),
   phone: z.string().optional().nullable(),
-  subject: z.string().optional().nullable()
+  subject: z.string().optional().nullable(),
 });
 
 // Nodemailer transporter
@@ -46,6 +48,11 @@ const transporter = nodemailer.createTransport({
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
   },
+});
+
+// ✅ Root route (Render check)
+app.get("/", (req, res) => {
+  res.send("✅ Portfolio Backend is running on Render!");
 });
 
 // Health check endpoint
@@ -95,6 +102,7 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+// Server listen
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
   console.log(`CORS Origin: ${CORS_ORIGIN}`);
