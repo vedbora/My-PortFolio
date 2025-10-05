@@ -43,7 +43,120 @@ const Projects: React.FC = () => {
         'Interactive learning modules',
         'Instructor dashboard'
       ]
-    }
+    },
+    {
+      id: 3,
+      title: 'MindQuest',
+      description: 'MindQuest is an AI-powered learning and knowledge platform built with Node.js and MySQL, designed to deliver personalized study experiences and intelligent assistance for users.',
+      longDescription: 'MindQuest provides a backend-driven solution for adaptive learning. The system is powered by Node.js with Express, integrated with MySQL for data persistence, and enhanced by AI models (OpenAI + Google Generative AI) for personalized responses. It includes secure authentication middleware, predefined response templates, and guides for billing, quota management, and API integration. The platform is designed to manage users, content, and AI-driven interactions while ensuring scalability and reliability for educational use cases.',
+      image: '\Mind Quest.png',
+      technologies: [
+        'Node.js',
+        'Express.js',
+        'MySQL',
+        'OpenAI API',
+        'Google Generative AI',
+        'JWT Authentication'
+      ],
+      github: 'https://github.com/vedbora/MindQuest',
+      demo: '#',
+      category: 'Healthcare',
+      features: [
+        'AI-powered knowledge assistance',
+        'Secure authentication system',
+        'Integration with OpenAI and Google Generative AI APIs',
+        'Predefined response management',
+        'Billing and quota management guides',
+        'MySQL-based structured data storage',
+        'Scalable Node.js backend'
+      ],
+      role: 'Backend Developer',
+      challenges: [
+        'Integrating multiple AI APIs (OpenAI + Google GenAI)',
+        'Managing API quota and billing efficiently',
+        'Building a secure and scalable backend with authentication'
+      ],
+      outcomes: [
+        'Developed an AI-driven learning backend',
+        'Successfully integrated large language models for user interaction',
+        'Delivered a stable system with secure data handling and extensible features'
+      ]
+    },
+    {
+  id: 4,
+  title: 'Hospital Booking System',
+  description: 'Hospital Booking System is a Java-based web application designed to simplify doctor appointments, patient management, and hospital services through an online booking platform.',
+  longDescription: 'The Hospital Booking System is built using Java Servlets, JSP, and JDBC with a DAO (Data Access Object) design pattern. The backend is structured around models for Doctors, Users, and Appointments, with SQL database integration for secure and reliable data storage. It supports functionalities such as doctor registration, patient booking, and appointment scheduling. With CORS handling, session management, and servlet-based controllers, the system ensures seamless interaction between patients and healthcare providers, reducing manual scheduling and enhancing hospital efficiency.',
+  image: '\Hospital Booking System.png',
+  technologies: [
+    'Java',
+    'Servlets',
+    'JSP',
+    'DAO Pattern',
+    'JDBC',
+    'MySQL/SQL Database',
+    'Maven'
+  ],
+  github: 'https://github.com/vedbora/Hospital-Booking-System',
+  demo: 'https://hospital-booking-system-fr88.onrender.com',
+  category: 'Healthcare',
+  features: [
+    'Patient registration and login',
+    'Doctor management system',
+    'Appointment booking and scheduling',
+    'Database-driven hospital services',
+    'Secure session handling with authentication',
+    'DAO pattern for modular data access',
+    'Scalable backend using Java Servlets and JDBC'
+  ],
+  role: 'Full-Stack Java Developer',
+  challenges: [
+    'Implementing a clean DAO structure for data access',
+    'Ensuring secure and concurrent appointment booking',
+    'Managing multiple user roles (doctor, patient, admin)'
+  ],
+  outcomes: [
+    'Delivered a reliable appointment booking system',
+    'Streamlined hospital-patient interaction',
+    'Developed a modular backend with maintainable codebase'
+  ]
+},
+  //   {
+  //     id: 5,
+  //     title: 'CryptoWatch',
+  //     description: 'CryptoWatch is a cryptocurrency portfolio tracker built with Angular and Node.js, providing real-time price monitoring, portfolio analytics, and trading insights for crypto investors.',
+  //     longDescription: 'Created a comprehensive cryptocurrency tracking platform using Angular frontend with Node.js backend. Integrated with multiple crypto APIs for real-time price data. Features include portfolio management, price alerts, market analysis, and responsive design with Material Design components.',
+  //     image: '/ChatGPT Image Jul 12, 2025, 11_43_27 PM.png',
+  //     technologies: ['Angular', 'Node.js', 'TypeScript', 'MongoDB', 'Socket.io', 'Material UI'],
+  //     github: 'https://github.com/vedbora/CryptoWatch',
+  //     demo: '#',
+  //     category: 'Finance',
+  //     features: [
+  //       'Real-time price tracking',
+  //       'Portfolio management',
+  //       'Price alerts & notifications',
+  //       'Market analysis tools',
+  //       'Trading history tracking'
+  //     ]
+  //   },
+  //   {
+  //     id: 6,
+  //     title: 'FitTracker',
+  //     description: 'FitTracker is a comprehensive fitness tracking app built with React Native and Express.js, offering workout planning, progress tracking, and social features for fitness enthusiasts.',
+  //     longDescription: 'Developed a cross-platform fitness application using React Native for mobile and Express.js for backend. Implemented features like workout logging, progress tracking, social sharing, and AI-powered workout recommendations. Used MongoDB for data storage and integrated with fitness APIs for exercise databases.',
+  //     image: '/ChatGPT Image Jul 12, 2025, 01_01_26 AM.png',
+  //     technologies: ['React Native', 'Express.js', 'MongoDB', 'Redux', 'Expo', 'Push Notifications'],
+  //     github: 'https://github.com/vedbora/FitTracker',
+  //     demo: '#',
+  //     category: 'Health & Fitness',
+  //     features: [
+  //       'Workout planning & logging',
+  //       'Progress tracking & charts',
+  //       'Social features & challenges',
+  //       'AI workout recommendations',
+  //       'Nutrition tracking integration'
+  //     ]
+  //   }
   ];
 
   const containerVariants = {
@@ -145,7 +258,7 @@ const Projects: React.FC = () => {
                     ))}
                   </div>
                   <motion.button
-                    onClick={() => setSelectedProject(project.id)}
+                    onClick={() => setSelectedProject(project.id ?? null)}
                     className="w-full py-3 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 border border-primary-500/30 rounded-lg text-primary-400 font-medium hover:from-primary-500/30 hover:to-secondary-500/30 transition-all duration-300"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -242,10 +355,15 @@ const Projects: React.FC = () => {
                           <Github className="w-5 h-5" />
                           <span>View Code</span>
                         </a>
-                        <button className="flex-1 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg text-center text-white font-medium transition-all hover:shadow-lg flex items-center justify-center space-x-2">
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg text-center text-white font-medium transition-all hover:shadow-lg flex items-center justify-center space-x-2"
+                        >
                           <ExternalLink className="w-5 h-5" />
                           <span>Live Demo</span>
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </>
